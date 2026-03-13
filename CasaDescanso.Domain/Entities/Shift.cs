@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CasaDescanso.Domain.Entities;
 
+[Table("shifts")]
 public class Shift
 {
     public int Id { get; set; }

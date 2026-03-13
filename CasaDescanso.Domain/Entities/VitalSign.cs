@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CasaDescanso.Domain.Entities;
 
+[Table("vitalsigns")]
 public class VitalSign
 {
     public int Id { get; set; }

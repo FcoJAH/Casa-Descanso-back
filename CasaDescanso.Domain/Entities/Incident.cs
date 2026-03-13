@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CasaDescanso.Domain.Entities;
 
-[Table("Incidents")]
+[Table("incidents")]
 public class Incident
 {
     public int Id { get; set; }

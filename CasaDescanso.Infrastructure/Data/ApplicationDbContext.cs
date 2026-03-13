@@ -33,7 +33,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Shift>().ToTable("shifts");
         modelBuilder.Entity<Incident>().ToTable("incidents");
         modelBuilder.Entity<VitalSign>().ToTable("vitalsigns");
-        modelBuilder.Entity<Attendance>().ToTable("attendances");
+        modelBuilder.Entity<Attendance>().ToTable("attendance");
         modelBuilder.Entity<DietType>().ToTable("diettypes");
         modelBuilder.Entity<ResidentDiet>().ToTable("residentdiets");
 

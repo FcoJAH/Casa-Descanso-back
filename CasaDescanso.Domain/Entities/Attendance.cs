@@ -2,7 +2,7 @@ namespace CasaDescanso.Domain.Entities;
 
 using System.ComponentModel.DataAnnotations.Schema;
 
-[Table("Attendance")]
+[Table("attendance")]
 public class Attendance
 {
     public int Id { get; set; }

@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CasaDescanso.Domain.Entities;
 
+[Table("diettypes")]
 public class DietType
 {
     public int Id { get; set; }
