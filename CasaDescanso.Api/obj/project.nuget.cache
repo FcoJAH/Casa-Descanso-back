@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "C9H5U7ij9J4=",
-  "success": false,
+  "dgSpecHash": "fAjvw/L8TwQ=",
+  "success": true,
   "projectFilePath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Api\\CasaDescanso.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\franc\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
@@ -22,20 +22,20 @@
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.13\\microsoft.entityframeworkcore.abstractions.8.0.13.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.13\\microsoft.entityframeworkcore.analyzers.8.0.13.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.entityframeworkcore.design\\8.0.13\\microsoft.entityframeworkcore.design.8.0.13.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\9.0.0\\microsoft.entityframeworkcore.relational.9.0.0.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.13\\microsoft.entityframeworkcore.relational.8.0.13.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\8.0.13\\microsoft.entityframeworkcore.sqlserver.8.0.13.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\8.0.13\\microsoft.entityframeworkcore.tools.8.0.13.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.0\\microsoft.extensions.caching.abstractions.9.0.0.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.0\\microsoft.extensions.caching.memory.9.0.0.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.0\\microsoft.extensions.configuration.abstractions.9.0.0.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.0\\microsoft.extensions.dependencyinjection.9.0.0.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0\\microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.1\\microsoft.extensions.caching.memory.8.0.1.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.1\\microsoft.extensions.dependencyinjection.8.0.1.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.2\\microsoft.extensions.dependencymodel.8.0.2.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.logging\\9.0.0\\microsoft.extensions.logging.9.0.0.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.0\\microsoft.extensions.logging.abstractions.9.0.0.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.options\\9.0.0\\microsoft.extensions.options.9.0.0.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.0\\microsoft.extensions.primitives.9.0.0.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.logging\\8.0.1\\microsoft.extensions.logging.8.0.1.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.identity.client\\4.61.3\\microsoft.identity.client.4.61.3.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.identity.client.extensions.msal\\4.61.3\\microsoft.identity.client.extensions.msal.4.61.3.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.35.0\\microsoft.identitymodel.abstractions.6.35.0.nupkg.sha512",
@@ -50,8 +50,8 @@
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\mysqlconnector\\2.4.0\\mysqlconnector.2.4.0.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\9.0.0\\pomelo.entityframeworkcore.mysql.9.0.0.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\mysqlconnector\\2.3.5\\mysqlconnector.2.3.5.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\8.0.2\\pomelo.entityframeworkcore.mysql.8.0.2.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\swashbuckle.aspnetcore\\6.6.2\\swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.6.2\\swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.6.2\\swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
@@ -66,7 +66,7 @@
     "C:\\Users\\franc\\.nuget\\packages\\system.composition.runtime\\6.0.0\\system.composition.runtime.6.0.0.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\system.composition.typedparts\\6.0.0\\system.composition.typedparts.6.0.0.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",
-    "C:\\Users\\franc\\.nuget\\packages\\system.diagnostics.diagnosticsource\\9.0.0\\system.diagnostics.diagnosticsource.9.0.0.nupkg.sha512",
+    "C:\\Users\\franc\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\system.formats.asn1\\8.0.2\\system.formats.asn1.8.0.2.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.35.0\\system.identitymodel.tokens.jwt.6.35.0.nupkg.sha512",
@@ -91,15 +91,5 @@
     "C:\\Users\\franc\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\franc\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Advertencia como error: Degradación del paquete detectada: Microsoft.EntityFrameworkCore de 9.0.0 a 8.0.13. Haga referencia al paquete directamente desde el proyecto para seleccionar una versión diferente. \r\n CasaDescanso.Api -> Pomelo.EntityFrameworkCore.MySql 9.0.0 -> Microsoft.EntityFrameworkCore.Relational 9.0.0 -> Microsoft.EntityFrameworkCore (>= 9.0.0) \r\n CasaDescanso.Api -> Microsoft.EntityFrameworkCore (>= 8.0.13)",
-      "libraryId": "Microsoft.EntityFrameworkCore",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }
