@@ -6,10 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AngularPolicy",
-        policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins("https://casadescanso-front.vercel.app", "http://localhost:4200")
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -34,16 +33,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // 2. Configurar el DbContext para SQL SERVER (Azure)
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    if (builder.Environment.IsDevelopment())
-    {
-        // Usa MySQL para tu base de datos local
-        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-    }
-    else
-    {
-        // Usa SQL Server para la base de datos de Azure (Producción)
-        options.UseSqlServer(connectionString);
-    }
+    // Aiven usa MySQL, así que forzamos siempre MySql
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
 builder.Services.AddControllers();
@@ -59,7 +50,7 @@ builder.WebHost.UseUrls($"http://*:{port}");
 var app = builder.Build();
 
 //app.UseCors("AngularPolicy");
-app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
