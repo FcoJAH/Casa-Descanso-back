@@ -1,0 +1,12 @@
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\bin\Release\net8.0\CasaDescanso.Domain.deps.json
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\bin\Release\net8.0\CasaDescanso.Domain.dll
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\bin\Release\net8.0\CasaDescanso.Domain.pdb
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\obj\Release\net8.0\CasaDescanso.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\obj\Release\net8.0\CasaDescanso.Domain.AssemblyInfoInputs.cache
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\obj\Release\net8.0\CasaDescanso.Domain.AssemblyInfo.cs
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\obj\Release\net8.0\CasaDescanso.Domain.csproj.CoreCompileInputs.cache
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\obj\Release\net8.0\CasaDescanso.Domain.sourcelink.json
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\obj\Release\net8.0\CasaDescanso.Domain.dll
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\obj\Release\net8.0\refint\CasaDescanso.Domain.dll
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\obj\Release\net8.0\CasaDescanso.Domain.pdb
+D:\repoGit\hogaresfraternalesjuanacatlan\CasaDescanso-Back\CasaDescanso.Domain\obj\Release\net8.0\ref\CasaDescanso.Domain.dll
