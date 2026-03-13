@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CasaDescanso.Domain.Entities;
 
+[Table("roles")]
 public class Role
 {
     public int Id { get; set; }

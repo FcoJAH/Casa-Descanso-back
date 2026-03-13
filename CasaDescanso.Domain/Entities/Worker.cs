@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CasaDescanso.Domain.Entities;
 
+[Table("workers")]
 public class Worker
 {
     public int Id { get; set; }
