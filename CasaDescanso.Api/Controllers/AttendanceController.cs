@@ -141,7 +141,11 @@ public class AttendanceController : ControllerBase
                          a.User.Worker.LastName + " " +
                          a.User.Worker.MiddleName,
                 a.Notes,
-                a.Status
+                a.Status,
+                a.LatitudeIn,
+                a.LongitudeIn,
+                a.LatitudeOut,
+                a.LongitudeOut
             })
             .ToListAsync();
 
