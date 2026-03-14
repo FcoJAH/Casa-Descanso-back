@@ -16,6 +16,12 @@ public class Attendance
     public DateTime Date { get; set; }
 
     public string? Notes { get; set; }
-    
+
     public string Status { get; set; } = "OPEN";
+
+    // Estandarizado:
+    public double LatitudeIn { get; set; }   // Cambiado de 'Latitude'
+    public double LongitudeIn { get; set; }  // Cambiado de 'Longitude'
+    public double LatitudeOut { get; set; }
+    public double LongitudeOut { get; set; }
 }
