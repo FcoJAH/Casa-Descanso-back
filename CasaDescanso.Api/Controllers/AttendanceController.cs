@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CasaDescanso.Domain.Entities;
 using CasaDescanso.Domain.Requests.UpdateAttendanceRequest;
+using CasaDescanso.Domain.Requests;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -19,39 +20,35 @@ public class AttendanceController : ControllerBase
     // CHECK IN
     // ================================
     [HttpPost("checkin")]
-    public async Task<IActionResult> CheckIn(int userId)
+    public async Task<IActionResult> CheckIn([FromBody] AttendanceLocationRequest request)
     {
         var today = DateTime.UtcNow.Date;
 
+        // Buscamos usando request.UserId
         var user = await _context.UserAccounts
-            .FirstOrDefaultAsync(u => u.Id == userId && u.IsActive);
+            .FirstOrDefaultAsync(u => u.Id == request.UserId && u.IsActive);
 
-        if (user == null)
-            return BadRequest("Usuario no existente o inactivo.");
+        if (user == null) return BadRequest("Usuario no existente o inactivo.");
 
         var exists = await _context.Attendances
-            .AnyAsync(a => a.UserId == userId && a.Date == today && a.Status == "OPEN");
+            .AnyAsync(a => a.UserId == request.UserId && a.Date == today && a.Status == "OPEN");
 
-        if (exists)
-            return BadRequest("Ya registraste ingreso hoy.");
+        if (exists) return BadRequest("Ya registraste ingreso hoy.");
 
         var attendance = new Attendance
         {
-            UserId = userId,
+            UserId = request.UserId,
             CheckIn = DateTime.UtcNow,
             Date = today,
-            Status = "OPEN"
+            Status = "OPEN",
+            LatitudeIn = request.Latitude,
+            LongitudeIn = request.Longitude
         };
 
         _context.Attendances.Add(attendance);
         await _context.SaveChangesAsync();
 
-        return Ok(new
-        {
-            message = "Ingreso registrado correctamente",
-            time = attendance.CheckIn,
-            status = attendance.Status
-        });
+        return Ok(new { message = "Ingreso registrado correctamente" });
     }
 
 
@@ -59,40 +56,33 @@ public class AttendanceController : ControllerBase
     // CHECK OUT
     // ================================
     [HttpPost("checkout")]
-    public async Task<IActionResult> CheckOut(int workerId)
+    public async Task<IActionResult> CheckOut([FromBody] AttendanceLocationRequest request)
     {
-        // 1️⃣ Buscar trabajador con su cuenta
+        // BUSCAMOS al trabajador que tiene una UserAccount con ese Id
         var worker = await _context.Workers
             .Include(w => w.UserAccount)
-            .FirstOrDefaultAsync(w => w.Id == workerId && w.IsActive);
+            .FirstOrDefaultAsync(w => w.UserAccount.Id == request.UserId && w.IsActive);
 
-        if (worker == null || worker.UserAccount == null)
-            return BadRequest("Trabajador no existente o sin cuenta activa.");
+        if (worker == null)
+            return BadRequest("No se encontró trabajador vinculado a esta cuenta.");
 
         var userId = worker.UserAccount.Id;
 
-        // 2️⃣ Buscar registro abierto (OPEN)
         var attendance = await _context.Attendances
             .FirstOrDefaultAsync(a => a.UserId == userId && a.Status == "OPEN");
 
         if (attendance == null)
             return BadRequest("No existe registro de ingreso abierto.");
 
-        // 3️⃣ Cerrar registro
         attendance.CheckOut = DateTime.UtcNow;
         attendance.Status = "CLOSED";
+        attendance.LatitudeOut = request.Latitude;
+        attendance.LongitudeOut = request.Longitude;
 
         await _context.SaveChangesAsync();
 
-        return Ok(new
-        {
-            message = "Salida registrada correctamente",
-            checkIn = attendance.CheckIn,
-            checkOut = attendance.CheckOut,
-            status = attendance.Status
-        });
+        return Ok(new { message = "Salida registrada correctamente" });
     }
-
 
     // ================================
     // CONSULTAR HOY
@@ -151,7 +141,11 @@ public class AttendanceController : ControllerBase
                          a.User.Worker.LastName + " " +
                          a.User.Worker.MiddleName,
                 a.Notes,
-                a.Status
+                a.Status,
+                a.LatitudeIn,
+                a.LongitudeIn,
+                a.LatitudeOut,
+                a.LongitudeOut
             })
             .ToListAsync();
 
