@@ -149,8 +149,8 @@ public class AttendanceController : ControllerBase
             })
             .ToListAsync();
 
-        if (!history.Any())
-            return NotFound(new { message = "No hay registros para este usuario" });
+        //if (!history.Any())
+        //    return NotFound(new { message = "No hay registros para este usuario" });
 
         return Ok(history);
     }
