@@ -27,6 +27,14 @@ builder.Services.AddScoped<IIncidentService, IncidentService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IVitalSignService, VitalSignService>();
 
+var cloudinarySection = builder.Configuration.GetSection("CloudinarySettings");
+builder.Services.Configure<CloudinarySettings>(options => {
+    options.CloudName = cloudinarySection["CloudName"] ?? "";
+    options.ApiKey = cloudinarySection["ApiKey"] ?? "";
+    options.ApiSecret = cloudinarySection["ApiSecret"] ?? "";
+});
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+
 // 1. Obtener la cadena de conexión
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
