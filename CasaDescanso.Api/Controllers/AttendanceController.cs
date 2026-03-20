@@ -22,7 +22,14 @@ public class AttendanceController : ControllerBase
     [HttpPost("checkin")]
     public async Task<IActionResult> CheckIn([FromBody] AttendanceLocationRequest request)
     {
-        var today = DateTime.UtcNow.Date;
+        var timezoneId = OperatingSystem.IsWindows()
+        ? "Central Standard Time (Mexico)"
+        : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        var nowGdl = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
+
+        var today = nowGdl.Date; // La fecha "hoy" real en Jalisco
 
         // Buscamos usando request.UserId
         var user = await _context.UserAccounts
@@ -38,7 +45,7 @@ public class AttendanceController : ControllerBase
         var attendance = new Attendance
         {
             UserId = request.UserId,
-            CheckIn = DateTime.UtcNow,
+            CheckIn = nowGdl,
             Date = today,
             Status = "OPEN",
             LatitudeIn = request.Latitude,
@@ -58,6 +65,13 @@ public class AttendanceController : ControllerBase
     [HttpPost("checkout")]
     public async Task<IActionResult> CheckOut([FromBody] AttendanceLocationRequest request)
     {
+        var timezoneId = OperatingSystem.IsWindows()
+        ? "Central Standard Time (Mexico)"
+        : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        var nowGdl = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
+
         // BUSCAMOS al trabajador que tiene una UserAccount con ese Id
         var worker = await _context.Workers
             .Include(w => w.UserAccount)
@@ -74,7 +88,7 @@ public class AttendanceController : ControllerBase
         if (attendance == null)
             return BadRequest("No existe registro de ingreso abierto.");
 
-        attendance.CheckOut = DateTime.UtcNow;
+        attendance.CheckOut = nowGdl;
         attendance.Status = "CLOSED";
         attendance.LatitudeOut = request.Latitude;
         attendance.LongitudeOut = request.Longitude;
