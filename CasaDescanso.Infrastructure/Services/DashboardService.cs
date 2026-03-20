@@ -24,7 +24,8 @@ public class DashboardService : IDashboardService
 
         //Obtener lista de nombres de trabajadores activos (OPEN)
         var activeWorkersList = await _context.Attendances
-            .Where(a => a.Date == hoy && a.Status == "OPEN")
+            //.Where(a => a.Date == hoy && a.Status == "OPEN")
+            .Where(a => a.Status == "OPEN")
             .Join(_context.Workers,
                 attendance => attendance.UserId,
                 worker => worker.Id,
