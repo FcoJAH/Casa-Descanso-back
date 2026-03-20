@@ -20,6 +20,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<VitalSign> VitalSigns => Set<VitalSign>();
     public DbSet<DietType> DietTypes => Set<DietType>();
     public DbSet<ResidentDiet> ResidentDiets => Set<ResidentDiet>();
+    public DbSet<ResidentDocument> ResidentDocuments => Set<ResidentDocument>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
