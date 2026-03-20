@@ -13,9 +13,23 @@ public class DashboardService : IDashboardService
 
     public async Task<DashboardResponse> GetDashboardAsync()
     {
-        var today = DateTime.UtcNow.Date;
-        var hoy = DateTime.UtcNow.Date;
-        var tomorrow = today.AddDays(1);
+        var timezoneId = OperatingSystem.IsWindows()
+        ? "Central Standard Time (Mexico)"
+        : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        var nowGdl = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
+        var hoy = nowGdl.Date;
+        var tomorrow = hoy.AddDays(1);
+
+        //Obtener lista de nombres de trabajadores activos (OPEN)
+        var activeWorkersList = await _context.Attendances
+            .Where(a => a.Date == hoy && a.Status == "OPEN")
+            .Join(_context.Workers,
+                attendance => attendance.UserId,
+                worker => worker.Id,
+                (attendance, worker) => worker.FirstName + " " + worker.LastName + " " + worker.MiddleName)
+            .ToListAsync();
 
         return new DashboardResponse
         {
@@ -40,7 +54,10 @@ public class DashboardService : IDashboardService
                 .CountAsync(a => a.Status == "OPEN"),
 
             CheckInsToday = await _context.Attendances
-                .CountAsync(a => a.Date == today)
+                .CountAsync(a => a.Date == hoy),
+
+            //Lista de nombres para el Front
+            ActiveWorkersNames = activeWorkersList
         };
     }
 }

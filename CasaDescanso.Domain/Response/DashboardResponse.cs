@@ -15,4 +15,5 @@ public class DashboardResponse
 
     public int WorkersWorkingNow { get; set; }
     public int CheckInsToday { get; set; }
+    public List<string> ActiveWorkersNames { get; set; } = new List<string>();
 }
