@@ -40,20 +40,19 @@ public class CloudinaryService : ICloudinaryService
         return uploadResult;
     }
 
-    public async Task<RawUploadResult> UploadPdfAsync(IFormFile file)
+    public async Task<ImageUploadResult> UploadPdfAsync(IFormFile file)
     {
-        var uploadResult = new RawUploadResult();
-        if (file.Length > 0)
+        using var stream = file.OpenReadStream();
+        var uploadParams = new ImageUploadParams
         {
-            using var stream = file.OpenReadStream();
-            var uploadParams = new RawUploadParams
-            {
-                File = new FileDescription(file.FileName, stream),
-                Folder = "expedientes_residentes"
-            };
-            uploadResult = await _cloudinary.UploadAsync(uploadParams);
-        }
-        return uploadResult;
+            File = new FileDescription(file.FileName, stream),
+            Folder = "expedientes_residentes",
+            // ESTA ES LA CLAVE:
+            Type = "upload",
+            AccessMode = "public"
+        };
+
+        return await _cloudinary.UploadAsync(uploadParams);
     }
 
     public async Task<DeletionResult> DeleteFileAsync(string publicId)

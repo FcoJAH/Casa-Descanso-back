@@ -9,6 +9,7 @@ public class ResidentDocument
     
     // Nombre que el usuario le da al archivo (ej: "Acta de Nacimiento 2024")
     public string DocumentName { get; set; } = string.Empty;
+    public string DetalleRecurso { get; set; } = string.Empty;
 
     // La URL segura que nos regresó Cloudinary (HTTPS)
     public string DocumentUrl { get; set; } = string.Empty;

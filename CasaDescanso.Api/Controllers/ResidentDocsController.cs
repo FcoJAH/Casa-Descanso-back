@@ -67,6 +67,7 @@ public class ResidentDocumentsController : ControllerBase
             var document = new ResidentDocument
             {
                 ResidentId = request.ResidentId,
+                DetalleRecurso = request.DetalleRecurso,
                 DocumentName = request.DocName,
                 DocumentUrl = url, // La URL que obtienes de Cloudinary
                 PublicId = publicId,
@@ -98,17 +99,68 @@ public class ResidentDocumentsController : ControllerBase
             {
                 d.Id,
                 d.DocumentName,
+                DetalleRecurso = d.DetalleRecurso ?? "",
                 d.DocumentUrl,
                 d.FileType,
                 d.CreatedAt
             })
             .ToListAsync();
 
-        if (documents == null || !documents.Any())
+        return Ok(documents);
+    }
+
+    // Nuevo endpoint para obtener la foto de perfil de un residente
+    [HttpGet("{residentId}/profile-photo")]
+    public async Task<IActionResult> GetProfilePhoto(int residentId)
+    {
+        var photo = await _context.ResidentDocuments
+            .Where(d => d.ResidentId == residentId && d.DocumentName == "ProfilePhoto")
+            .OrderByDescending(d => d.CreatedAt)
+            .Select(d => new { d.DocumentUrl })
+            .FirstOrDefaultAsync();
+
+        if (photo == null)
         {
-            return NotFound($"No se encontraron documentos para el residente con ID {residentId}");
+            return Ok(new { documentUrl = "" });
         }
 
-        return Ok(documents);
+        return Ok(photo);
+    }
+
+    /// <summary>
+    /// Endpoint de guardado de foto de perfil
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="file"></param>
+    /// <returns></returns>
+    [HttpPatch("{id}/upload-photo")]
+    public async Task<IActionResult> UploadPhoto(int id, IFormFile file)
+    {
+        var resident = await _context.Residents.FindAsync(id);
+        if (resident == null) return NotFound("Residente no encontrado");
+
+        if (file == null || file.Length == 0) return BadRequest("No se proporcionó un archivo válido");
+
+        try
+        {
+            // 1. Subir a Cloudinary (Usando tu servicio ya existente)
+            var uploadResult = await _cloudinaryService.UploadImageAsync(file);
+
+            if (uploadResult.Error != null) return BadRequest(uploadResult.Error.Message);
+
+            // 2. Actualizar el campo PhotoPath en la tabla Residents
+            resident.PhotoPath = uploadResult.SecureUrl.ToString();
+
+            // 3. Guardar cambios
+            _context.Residents.Update(resident);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { photoPath = resident.PhotoPath });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Error interno: {ex.Message}");
+        }
     }
 }
