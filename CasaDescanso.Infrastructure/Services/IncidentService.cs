@@ -19,6 +19,13 @@ public class IncidentService : IIncidentService
         var residentExists = await _context.Residents
             .AnyAsync(r => r.Id == request.ResidentId);
 
+        var timezoneId = OperatingSystem.IsWindows()
+    ? "Central Standard Time (Mexico)"
+    : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        var nowGdl = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
+
         if (!residentExists)
             throw new Exception("Residente no encontrado");
 
@@ -37,7 +44,7 @@ public class IncidentService : IIncidentService
             Type = request.Type,
             SeverityLevel = request.SeverityLevel,
             Description = request.Description,
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = nowGdl
         };
 
         _context.Incidents.Add(incident);
