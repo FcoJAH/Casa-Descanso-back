@@ -44,11 +44,19 @@ public class RolesController : ControllerBase
         if (exists)
             return BadRequest(new { message = "Ya existe un rol con ese nombre" });
 
+        var timezoneId = OperatingSystem.IsWindows()
+        ? "Central Standard Time (Mexico)"
+        : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        var nowGdl = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
+
+
         var role = new Role
         {
             Name = request.Name.Trim().ToUpper(),
             Description = request.Description,
-            CreatedAt = DateTime.UtcNow,
+            CreatedAt = nowGdl,
             IsActive = true
         };
 

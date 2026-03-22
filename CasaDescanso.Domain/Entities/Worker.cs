@@ -60,7 +60,17 @@ public class Worker
 
     public bool IsActive { get; set; } = true;
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; }
 
     public UserAccount UserAccount { get; set; } = null!;
+
+    public Worker()
+    {
+        var timezoneId = OperatingSystem.IsWindows()
+            ? "Central Standard Time (Mexico)"
+            : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        CreatedAt = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
+    }
 }
