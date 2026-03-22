@@ -27,6 +27,13 @@ public class VitalSignService : IVitalSignService
         if (!userExists)
             throw new Exception("Usuario no encontrado");
 
+        var timezoneId = OperatingSystem.IsWindows()
+        ? "Central Standard Time (Mexico)"
+        : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        var nowGdl = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
+
         var vital = new VitalSign
         {
             ResidentId = request.ResidentId,
@@ -39,7 +46,7 @@ public class VitalSignService : IVitalSignService
             GlucoseLevel = request.GlucoseLevel,
             Weight = request.Weight,
             Notes = request.Notes,
-            RecordedAt = DateTime.UtcNow
+            RecordedAt = nowGdl
         };
 
         _context.VitalSigns.Add(vital);

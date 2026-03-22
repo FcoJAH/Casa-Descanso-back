@@ -104,7 +104,12 @@ public class AttendanceController : ControllerBase
     [HttpGet("today/{workerId}")]
     public async Task<IActionResult> GetToday(int workerId)
     {
-        var today = DateTime.UtcNow.Date;
+        var timezoneId = OperatingSystem.IsWindows()
+        ? "Central Standard Time (Mexico)"
+        : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        var today = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
 
         var attendance = await _context.Attendances
             .Include(a => a.User)

@@ -58,5 +58,16 @@ public class Resident
 
     public bool IsActive { get; set; } = true;
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; }
+
+    // Constructor para inicializar la fecha con hora de GDL
+    public Resident()
+    {
+        var timezoneId = OperatingSystem.IsWindows()
+            ? "Central Standard Time (Mexico)"
+            : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        CreatedAt = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
+    }
 }

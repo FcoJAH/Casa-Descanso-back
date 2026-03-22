@@ -37,6 +37,14 @@ public class WorkerService : IWorkerService
         if (!roleExists)
             throw new Exception("El rol especificado no existe.");
 
+        var timezoneId = OperatingSystem.IsWindows()
+                ? "Central Standard Time (Mexico)"
+                : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        var nowGdl = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
+
+
         var worker = new Worker
         {
             FirstName = request.FirstName,
@@ -56,7 +64,7 @@ public class WorkerService : IWorkerService
             Allergies = request.Allergies,
             ShiftId = request.ShiftId,
             IsActive = true,
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = nowGdl
         };
 
         _context.Workers.Add(worker);
@@ -73,6 +81,7 @@ public class WorkerService : IWorkerService
 
         var username = $"{firstTwoName}{firstTwoLastName}000{worker.Id:D2}".ToUpper();
 
+
         var userAccount = new UserAccount
         {
             WorkerId = worker.Id,
@@ -80,7 +89,7 @@ public class WorkerService : IWorkerService
             PasswordHash = request.Password, // SIN HASH por ahora
             RoleId = request.RoleId,
             IsActive = true,
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = nowGdl
         };
 
         _context.UserAccounts.Add(userAccount);

@@ -22,7 +22,17 @@ public class UserAccount
 
     public bool IsActive { get; set; } = true;
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; }
+
+    public UserAccount()
+    {
+        var timezoneId = OperatingSystem.IsWindows()
+            ? "Central Standard Time (Mexico)"
+            : "America/Mexico_City";
+
+        var gdlZone = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
+        CreatedAt = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, gdlZone);
+    }
 
     public ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
     public ICollection<Incident> RegisteredIncidents { get; set; } = new List<Incident>();
