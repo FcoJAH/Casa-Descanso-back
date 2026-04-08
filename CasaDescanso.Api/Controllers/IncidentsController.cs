@@ -67,4 +67,19 @@ public class IncidentsController : ControllerBase
         return Ok(incidents);
     }
 
+    // Metodo nuevo para traer incidentes del día
+    [HttpGet("today")]
+    public async Task<IActionResult> GetTodayIncidents()
+    {
+        try
+        {
+            var incidents = await _incidentService.GetTodayIncidentsAsync();
+            return Ok(incidents);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = "Error al obtener incidencias de hoy", error = ex.Message });
+        }
+    }
+
 }
