@@ -59,6 +59,10 @@ builder.WebHost.UseUrls($"http://*:{port}");
 
 var app = builder.Build();
 
+app.UseHttpsRedirection();
+
+app.UseRouting();
+
 //app.UseCors("AngularPolicy");
 app.UseCors("AllowAll");
 
@@ -73,8 +77,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
-app.UseHttpsRedirection();
 
 var summaries = new[]
 {
