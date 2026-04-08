@@ -21,12 +21,15 @@ public class ApplicationDbContext : DbContext
     public DbSet<DietType> DietTypes => Set<DietType>();
     public DbSet<ResidentDiet> ResidentDiets => Set<ResidentDiet>();
     public DbSet<ResidentDocument> ResidentDocuments => Set<ResidentDocument>();
+    
+    // 1. Agregar el DbSet para Eventos
+    public DbSet<Event> Events => Set<Event>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Mapeo de todas las tablas a minúsculas para compatibilidad con Linux/Render
+        // Mapeo de todas las tablas a minúsculas
         modelBuilder.Entity<UserAccount>().ToTable("useraccounts");
         modelBuilder.Entity<Worker>().ToTable("workers");
         modelBuilder.Entity<Resident>().ToTable("residents");
@@ -37,6 +40,15 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Attendance>().ToTable("attendance");
         modelBuilder.Entity<DietType>().ToTable("diettypes");
         modelBuilder.Entity<ResidentDiet>().ToTable("residentdiets");
+        
+        // 2. Mapeo de la tabla events (coincidiendo con tu script de SQL)
+        modelBuilder.Entity<Event>(entity => {
+            entity.ToTable("events");
+            
+            // 3. Configurar para que la DB maneje el createdAt automáticamente
+            entity.Property(e => e.CreatedAt)
+                  .ValueGeneratedOnAdd();
+        });
 
         // Configuración de precisión para decimales en VitalSign
         modelBuilder.Entity<VitalSign>(entity =>

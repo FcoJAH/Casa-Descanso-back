@@ -1,6 +1,7 @@
 using CasaDescanso.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using CasaDescanso.Infrastructure.Services;
+using CasaDescanso.Application.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ builder.Services.AddScoped<IResidentService, ResidentService>();
 builder.Services.AddScoped<IIncidentService, IncidentService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IVitalSignService, VitalSignService>();
+builder.Services.AddScoped<IEventsService, EventsService>();
 
 var cloudinarySection = builder.Configuration.GetSection("CloudinarySettings");
 builder.Services.Configure<CloudinarySettings>(options => {

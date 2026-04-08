@@ -1,72 +1,54 @@
+using CasaDescanso.Application.Interfaces;
 using CasaDescanso.Domain.Entities;
 using CasaDescanso.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
 public class EventsController : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
+    // Cambiamos el contexto por el servicio para respetar la arquitectura de capas
+    private readonly IEventsService _eventsService;
 
-    public EventsController(ApplicationDbContext context)
+    public EventsController(IEventsService eventsService)
     {
-        _context = context;
+        // Corregido: Asignación correcta del parámetro
+        _eventsService = eventsService;
     }
 
-    // GET: api/Events
-    [HttpGet("/getAll")]
+    // GET: api/Events/getAll
+    [HttpGet("getAll")] // Quitamos el "/" inicial para que sea relativo a api/Events
     public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
     {
-        // Traemos los eventos de hoy en adelante, ordenados por fecha próxima
-        return await _context.Events
-            .Where(e => e.EventDate >= DateTime.Today)
-            .OrderBy(e => e.EventDate)
-            .Take(10) // El cliente quiere ver qué viene, subimos a 10
-            .ToListAsync();
+        // Delegamos la lógica al servicio
+        var events = await _eventsService.GetUpcomingEventsAsync();
+
+        // El filtrado de fecha ya lo haces en el TS, pero si el servicio ya lo trae filtrado, mejor.
+        return Ok(events);
     }
 
-    // POST: api/Events
-    [HttpPost("/create")]
+    // POST: api/Events/create
+    [HttpPost("create")]
     public async Task<ActionResult<Event>> PostEvent(Event newEvent)
     {
-        // Forzamos mayúsculas en el título como en el resto de tu sistema
+        if (newEvent == null) return BadRequest();
+
+        // Forzamos mayúsculas (Regla del sistema)
         newEvent.Title = newEvent.Title.ToUpper();
 
-        // No enviamos CreatedAt porque tu SQL tiene el DEFAULT
-        _context.Events.Add(newEvent);
-        await _context.SaveChangesAsync();
+        var createdEvent = await _eventsService.CreateEventAsync(newEvent);
 
-        return CreatedAtAction(nameof(GetEvents), new { id = newEvent.Id }, newEvent);
+        return CreatedAtAction(nameof(GetEvents), new { id = createdEvent.Id }, createdEvent);
     }
 
-    // PUT: api/Events/5
-    [HttpPut("{id}/modify")]
-    public async Task<IActionResult> PutEvent(int id, Event updatedEvent)
-    {
-        if (id != updatedEvent.Id) return BadRequest();
-
-        var eventInDb = await _context.Events.FindAsync(id);
-        if (eventInDb == null) return NotFound();
-
-        eventInDb.Title = updatedEvent.Title.ToUpper();
-        eventInDb.Description = updatedEvent.Description;
-        eventInDb.EventDate = updatedEvent.EventDate;
-        // createdBy y createdAt no se deberían editar
-
-        await _context.SaveChangesAsync();
-        return NoContent();
-    }
-
-    // DELETE: api/Events/5
+    // DELETE: api/Events/5/delete
     [HttpDelete("{id}/delete")]
     public async Task<IActionResult> DeleteEvent(int id)
     {
-        var eventToDelete = await _context.Events.FindAsync(id);
-        if (eventToDelete == null) return NotFound();
+        var result = await _eventsService.DeleteEventAsync(id);
+        if (!result) return NotFound();
 
-        _context.Events.Remove(eventToDelete);
-        await _context.SaveChangesAsync();
         return NoContent();
     }
 }
