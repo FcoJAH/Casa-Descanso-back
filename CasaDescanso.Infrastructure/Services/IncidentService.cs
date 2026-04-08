@@ -136,4 +136,24 @@ public class IncidentService : IIncidentService
             })
             .ToListAsync();
     }
+
+    public async Task<IEnumerable<object>> GetTodayIncidentsAsync()
+    {
+        // 1. Definir horario de México (Central Standard Time)
+        var mexicoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)");
+        var todayMexico = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, mexicoTimeZone).Date;
+
+        // 2. Consulta con Join a Residents
+        return await _context.Incidents
+            .Include(i => i.Resident)
+            .Where(i => i.Date.Date == todayMexico)
+            .Select(i => new
+            {
+                Id = i.Id,
+                ResidentId = i.ResidentId,
+                // Nombre concatenado y en MAYÚSCULAS
+                ResidentName = $"{i.Resident.FirstName} {i.Resident.LastName} {i.Resident.MiddleName}".Trim()
+            })
+            .ToListAsync();
+    }
 }
