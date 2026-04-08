@@ -151,7 +151,7 @@ public class IncidentService : IIncidentService
             {
                 Id = i.Id,
                 ResidentId = i.ResidentId,
-                // Nombre concatenado y en MAYÚSCULAS
+                // Nombre concatenado
                 ResidentName = $"{i.Resident.FirstName} {i.Resident.LastName} {i.Resident.MiddleName}".Trim()
             })
             .ToListAsync();
