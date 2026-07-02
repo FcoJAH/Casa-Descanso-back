@@ -2456,6 +2456,7 @@
         "dependencies": {
           "CasaDescanso.Domain": "1.0.0",
           "CloudinaryDotNet": "1.28.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
           "Microsoft.EntityFrameworkCore": "8.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "8.0.0",
           "SendGrid": "9.29.3"

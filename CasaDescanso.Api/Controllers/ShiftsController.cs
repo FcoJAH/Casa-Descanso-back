@@ -1,4 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using CasaDescanso.Infrastructure.Data;
 using CasaDescanso.Domain.Entities;
@@ -7,6 +8,7 @@ using CasaDescanso.Domain.Requests.UpdateShiftRequest;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ShiftsController : ControllerBase
 {
     private readonly ApplicationDbContext _context;

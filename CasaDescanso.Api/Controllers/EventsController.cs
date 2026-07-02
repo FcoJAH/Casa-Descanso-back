@@ -1,11 +1,13 @@
-using CasaDescanso.Application.Interfaces;
+﻿using CasaDescanso.Application.Interfaces;
 using CasaDescanso.Domain.Entities;
 using CasaDescanso.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class EventsController : ControllerBase
 {
     // Cambiamos el contexto por el servicio para respetar la arquitectura de capas

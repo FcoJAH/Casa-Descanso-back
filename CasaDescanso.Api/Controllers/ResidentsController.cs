@@ -1,9 +1,11 @@
-using CasaDescanso.Domain.Request;
+﻿using CasaDescanso.Domain.Request;
 using CasaDescanso.Domain.Request.UpdateResidentRequest;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ResidentsController : ControllerBase
 {
     private readonly IResidentService _service;

@@ -1,4 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using CasaDescanso.Infrastructure.Services;
 using CasaDescanso.Domain.Request.CreateWorkerRequest;
 using CasaDescanso.Domain.Requests.UpdateWorkerRequest;
@@ -7,6 +8,7 @@ namespace CasaDescanso.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class WorkersController : ControllerBase
 {
     private readonly IWorkerService _workerService;

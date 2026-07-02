@@ -1,14 +1,16 @@
-using CasaDescanso.Domain.Entities;
+﻿using CasaDescanso.Domain.Entities;
 using CasaDescanso.Domain.Requests.CreateRoleRequest;
 using CasaDescanso.Domain.Requests.UpdateRoleRequest;
 using CasaDescanso.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace CasaDescanso.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class RolesController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
