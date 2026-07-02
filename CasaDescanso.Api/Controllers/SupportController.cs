@@ -1,4 +1,4 @@
-using CasaDescanso.Application.Interfaces;
+using CasaDescanso.Domain.Interfaces;
 using CasaDescanso.Domain.Request;
 using Microsoft.AspNetCore.Mvc;
 
