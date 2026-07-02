@@ -1,4 +1,4 @@
-using CasaDescanso.Application.Interfaces;
+using CasaDescanso.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SendGrid;

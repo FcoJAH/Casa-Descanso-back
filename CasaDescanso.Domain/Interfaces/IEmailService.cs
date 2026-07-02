@@ -1,4 +1,4 @@
-namespace CasaDescanso.Application.Interfaces;
+namespace CasaDescanso.Domain.Interfaces;
 
 public interface IEmailService
 {

@@ -1,6 +1,7 @@
 using CasaDescanso.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using CasaDescanso.Infrastructure.Services;
+using CasaDescanso.Domain.Interfaces;
 using CasaDescanso.Application.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -43,7 +44,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // 2. Configurar el DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+    options.UseMySql(connectionString, ServerVersion.Parse("8.0.0-mysql"));
 });
 
 builder.Services.AddControllers();
