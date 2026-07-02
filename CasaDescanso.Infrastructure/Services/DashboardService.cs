@@ -24,12 +24,10 @@ public class DashboardService : IDashboardService
 
         //Obtener lista de nombres de trabajadores activos (OPEN)
         var activeWorkersList = await _context.Attendances
-            //.Where(a => a.Date == hoy && a.Status == "OPEN")
+            .Include(a => a.User)
+                .ThenInclude(u => u.Worker)
             .Where(a => a.Status == "OPEN")
-            .Join(_context.Workers,
-                attendance => attendance.UserId,
-                worker => worker.Id,
-                (attendance, worker) => worker.FirstName + " " + worker.LastName + " " + worker.MiddleName)
+            .Select(a => a.User.Worker.FirstName + " " + a.User.Worker.LastName + " " + a.User.Worker.MiddleName)
             .ToListAsync();
 
         return new DashboardResponse
