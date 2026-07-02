@@ -1,8 +1,10 @@
-using CasaDescanso.Domain.Request;
+﻿using CasaDescanso.Domain.Request;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class VitalSignsController : ControllerBase
 {
     private readonly IVitalSignService _service;

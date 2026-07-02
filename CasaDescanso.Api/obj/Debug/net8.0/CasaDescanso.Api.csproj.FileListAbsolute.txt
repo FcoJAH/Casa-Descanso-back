@@ -307,3 +307,4 @@ E:\repo\casa_descanso\Casa-Descanso-back\CasaDescanso.Api\obj\Debug\net8.0\refin
 E:\repo\casa_descanso\Casa-Descanso-back\CasaDescanso.Api\obj\Debug\net8.0\CasaDescanso.Api.pdb
 E:\repo\casa_descanso\Casa-Descanso-back\CasaDescanso.Api\obj\Debug\net8.0\CasaDescanso.Api.genruntimeconfig.cache
 E:\repo\casa_descanso\Casa-Descanso-back\CasaDescanso.Api\obj\Debug\net8.0\ref\CasaDescanso.Api.dll
+E:\repo\casa_descanso\Casa-Descanso-back\CasaDescanso.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

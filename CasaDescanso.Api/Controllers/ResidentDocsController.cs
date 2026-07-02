@@ -1,9 +1,11 @@
-using CasaDescanso.Infrastructure.Data;
+﻿using CasaDescanso.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ResidentDocumentsController : ControllerBase
 {
     private readonly ICloudinaryService _cloudinaryService;

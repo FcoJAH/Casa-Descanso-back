@@ -1,5 +1,6 @@
-using CasaDescanso.Infrastructure.Data;
+﻿using CasaDescanso.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using CasaDescanso.Domain.Entities;
 using CasaDescanso.Domain.Requests.UpdateAttendanceRequest;
@@ -7,6 +8,7 @@ using CasaDescanso.Domain.Requests;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class AttendanceController : ControllerBase
 {
     private readonly ApplicationDbContext _context;

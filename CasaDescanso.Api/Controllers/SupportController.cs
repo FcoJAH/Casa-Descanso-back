@@ -1,11 +1,13 @@
-using CasaDescanso.Domain.Interfaces;
+﻿using CasaDescanso.Domain.Interfaces;
 using CasaDescanso.Domain.Request;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CasaDescanso.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class SupportController : ControllerBase
 {
     private readonly IEmailService _emailService;
