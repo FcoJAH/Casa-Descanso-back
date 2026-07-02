@@ -2,6 +2,8 @@ namespace CasaDescanso.Infrastructure.Services;
 
 public interface IAuthService
 {
-    Task<(bool IsSuccess, int UserId, int WorkerId, string FullName, string Position, string ShiftName)>
+    Task<(bool IsSuccess, int UserId, int WorkerId, string FullName, string Position, string ShiftName, bool HasSeenSupportAnnouncement)>
         LoginAsync(string username, string password);
+
+    Task<bool> MarkAnnouncementAsSeenAsync(int userId);
 }

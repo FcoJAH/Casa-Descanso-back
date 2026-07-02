@@ -29,9 +29,19 @@ public class AuthController : ControllerBase
             WorkerId = result.WorkerId,
             FullName = result.FullName,
             Position = result.Position,
-            Shift = result.ShiftName
+            Shift = result.ShiftName,
+            HasSeenSupportAnnouncement = result.HasSeenSupportAnnouncement
         };
 
         return Ok(response);
+    }
+
+    [HttpPost("{userId}/mark-support-announcement")]
+    public async Task<IActionResult> MarkSupportAnnouncementAsSeen(int userId)
+    {
+        var success = await _authService.MarkAnnouncementAsSeenAsync(userId);
+        if (!success) return NotFound("Usuario no encontrado.");
+
+        return Ok(new { message = "Anuncio marcado como visto." });
     }
 }

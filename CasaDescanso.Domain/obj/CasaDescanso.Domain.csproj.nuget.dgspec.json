@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj": {}
+    "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj": {}
   },
   "projects": {
-    "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj": {
+    "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj",
+        "projectUniqueName": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj",
         "projectName": "CasaDescanso.Domain",
-        "projectPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj",
-        "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\obj\\",
+        "projectPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj",
+        "packagesPath": "C:\\Users\\Akali\\.nuget\\packages\\",
+        "outputPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\franc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Akali\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -54,11 +54,14 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

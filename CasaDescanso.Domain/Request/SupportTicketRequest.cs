@@ -7,4 +7,5 @@ public class SupportTicketRequest
     public string ReporterName { get; set; } = string.Empty;
     public string ReporterRole { get; set; } = string.Empty;
     public string LocalTime { get; set; } = string.Empty;
+    public string? ScreenshotBase64 { get; set; }
 }
