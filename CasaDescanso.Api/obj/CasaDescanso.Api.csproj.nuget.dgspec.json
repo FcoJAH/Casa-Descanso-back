@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Api\\CasaDescanso.Api.csproj": {}
+    "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Api\\CasaDescanso.Api.csproj": {}
   },
   "projects": {
-    "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Api\\CasaDescanso.Api.csproj": {
+    "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Api\\CasaDescanso.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Api\\CasaDescanso.Api.csproj",
+        "projectUniqueName": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Api\\CasaDescanso.Api.csproj",
         "projectName": "CasaDescanso.Api",
-        "projectPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Api\\CasaDescanso.Api.csproj",
-        "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Api\\obj\\",
+        "projectPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Api\\CasaDescanso.Api.csproj",
+        "packagesPath": "C:\\Users\\Akali\\.nuget\\packages\\",
+        "outputPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\franc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Akali\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,11 +26,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj": {
-                "projectPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj"
+              "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj": {
+                "projectPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj"
               },
-              "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Infrastructure\\CasaDescanso.Infrastructure.csproj": {
-                "projectPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Infrastructure\\CasaDescanso.Infrastructure.csproj"
+              "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Infrastructure\\CasaDescanso.Infrastructure.csproj": {
+                "projectPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Infrastructure\\CasaDescanso.Infrastructure.csproj"
               }
             }
           }
@@ -53,6 +53,10 @@
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.0.3, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.28.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -82,6 +86,10 @@
               "target": "Package",
               "version": "[8.0.2, )"
             },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.29.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
@@ -106,21 +114,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj": {
+    "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj",
+        "projectUniqueName": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj",
         "projectName": "CasaDescanso.Domain",
-        "projectPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj",
-        "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\obj\\",
+        "projectPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj",
+        "packagesPath": "C:\\Users\\Akali\\.nuget\\packages\\",
+        "outputPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\franc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Akali\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -160,25 +168,28 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Infrastructure\\CasaDescanso.Infrastructure.csproj": {
+    "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Infrastructure\\CasaDescanso.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Infrastructure\\CasaDescanso.Infrastructure.csproj",
+        "projectUniqueName": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Infrastructure\\CasaDescanso.Infrastructure.csproj",
         "projectName": "CasaDescanso.Infrastructure",
-        "projectPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Infrastructure\\CasaDescanso.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Infrastructure\\obj\\",
+        "projectPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Infrastructure\\CasaDescanso.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Akali\\.nuget\\packages\\",
+        "outputPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\franc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Akali\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -190,8 +201,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj": {
-                "projectPath": "D:\\repoGit\\hogaresfraternalesjuanacatlan\\CasaDescanso-Back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj"
+              "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj": {
+                "projectPath": "E:\\repo\\casa_descanso\\Casa-Descanso-back\\CasaDescanso.Domain\\CasaDescanso.Domain.csproj"
               }
             }
           }
@@ -211,6 +222,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.28.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -230,6 +245,10 @@
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.29.3, )"
             }
           },
           "imports": [
@@ -244,11 +263,14 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

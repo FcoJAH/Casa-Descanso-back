@@ -41,7 +41,7 @@ public class SupportController : ControllerBase
             </p>
         ";
 
-        var success = await _emailService.SendSupportTicketAsync(subject, plainText, htmlContent);
+        var success = await _emailService.SendSupportTicketAsync(subject, plainText, htmlContent, request.ScreenshotBase64);
 
         if (success)
             return Ok(new { message = "El reporte ha sido enviado a soporte técnico." });
