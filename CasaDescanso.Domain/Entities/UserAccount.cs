@@ -26,6 +26,10 @@ public class UserAccount
 
     public DateTime CreatedAt { get; set; }
 
+    public string? RefreshToken { get; set; }
+
+    public DateTime? RefreshTokenExpiryTime { get; set; }
+
     public UserAccount()
     {
         var timezoneId = OperatingSystem.IsWindows()
