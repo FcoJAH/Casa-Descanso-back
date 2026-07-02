@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using CasaDescanso.Infrastructure.Services;
 using CasaDescanso.Domain.Interfaces;
 using CasaDescanso.Application.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +50,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.Parse("8.0.0-mysql"));
 });
 
+// 3. Configurar Autenticación JWT
+var jwtKey = builder.Configuration["JwtSettings:Secret"] ?? "EstaEsUnaSuperClaveSecretaMuyLargaParaJWT123456789";
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+            ValidateIssuer = false, // En un entorno real se recomienda validar el Emisor
+            ValidateAudience = false,
+            ClockSkew = TimeSpan.Zero // Para que la expiración sea exacta
+        };
+    });
+
 builder.Services.AddControllers();
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
@@ -66,6 +84,7 @@ app.UseRouting();
 app.UseMiddleware<CasaDescanso.Api.Middleware.GlobalExceptionMiddleware>();
 
 app.UseCors("AllowAll");
+app.UseAuthentication();
 app.UseAuthorization();
 
 if (app.Environment.IsDevelopment())

@@ -30,7 +30,32 @@ public class AuthController : ControllerBase
             FullName = result.FullName,
             Position = result.Position,
             Shift = result.ShiftName,
-            HasSeenSupportAnnouncement = result.HasSeenSupportAnnouncement
+            HasSeenSupportAnnouncement = result.HasSeenSupportAnnouncement,
+            Token = result.Token,
+            RefreshToken = result.RefreshToken
+        };
+
+        return Ok(response);
+    }
+
+    [HttpPost("refresh")]
+    public async Task<IActionResult> Refresh(CasaDescanso.Api.DTOs.Auth.RefreshRequestDto request)
+    {
+        var result = await _authService.RefreshAsync(request.Token, request.RefreshToken);
+
+        if (!result.IsSuccess)
+            return Unauthorized("Sesión expirada o token inválido.");
+
+        var response = new LoginResponseDto
+        {
+            UserId = result.UserId,
+            WorkerId = result.WorkerId,
+            FullName = result.FullName,
+            Position = result.Position,
+            Shift = result.ShiftName,
+            HasSeenSupportAnnouncement = result.HasSeenSupportAnnouncement,
+            Token = result.Token,
+            RefreshToken = result.RefreshToken
         };
 
         return Ok(response);

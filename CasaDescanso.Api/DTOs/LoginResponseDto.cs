@@ -8,4 +8,8 @@ public class LoginResponseDto
     public string Position { get; set; } = string.Empty;
     public string Shift { get; set; } = string.Empty;
     public bool HasSeenSupportAnnouncement { get; set; }
+    
+    // JWT
+    public string Token { get; set; } = string.Empty;
+    public string RefreshToken { get; set; } = string.Empty;
 }
