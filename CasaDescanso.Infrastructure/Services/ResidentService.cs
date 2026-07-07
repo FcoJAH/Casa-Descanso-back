@@ -17,13 +17,6 @@ public class ResidentService : IResidentService
 
     public async Task<ResidentResponse> CreateAsync(CreateResidentRequest request)
     {
-        // Validar NSS único
-        var exists = await _context.Residents
-            .AnyAsync(r => r.NSS == request.NSS);
-
-        if (exists)
-            throw new Exception("Ya existe un residente con ese NSS.");
-
         var resident = new Resident
         {
             FirstName = request.FirstName,
