@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using Microsoft.AspNetCore.SignalR;
+using CasaDescanso.Api.Hubs;
 
 namespace CasaDescanso.Api.Controllers;
 
@@ -16,11 +18,13 @@ public class SupportController : ControllerBase
 {
     private readonly IEmailService _emailService;
     private readonly ApplicationDbContext _context;
+    private readonly IHubContext<NotificationHub> _hubContext;
 
-    public SupportController(IEmailService emailService, ApplicationDbContext context)
+    public SupportController(IEmailService emailService, ApplicationDbContext context, IHubContext<NotificationHub> hubContext)
     {
         _emailService = emailService;
         _context = context;
+        _hubContext = hubContext;
     }
 
     [HttpPost("ticket")]
@@ -73,6 +77,15 @@ public class SupportController : ControllerBase
         // El email incluye el pantallazo si existe
         await _emailService.SendSupportTicketAsync(subject, plainText, htmlContent, request.ScreenshotBase64);
 
+        // Notificar al instante al departamento de SISTEMAS
+        await _hubContext.Clients.Group("SISTEMAS").SendAsync("ReceiveNewTicket", new {
+            Id = ticket.Id,
+            ReporterName = ticket.ReporterName,
+            ReporterRole = ticket.ReporterRole,
+            CurrentUrl = ticket.CurrentUrl,
+            CreatedAt = ticket.CreatedAt
+        });
+
         return Ok(new { message = "El reporte ha sido enviado a soporte técnico." });
     }
 
@@ -101,6 +114,15 @@ public class SupportController : ControllerBase
         ticket.IsReadByReporter = false; 
 
         await _context.SaveChangesAsync();
+
+        // Notificar en vivo vía SignalR
+        await _hubContext.Clients.User(ticket.ReporterUserId.ToString())
+            .SendAsync("ReceiveTicketResolved", new {
+                Id = ticket.Id,
+                CurrentUrl = ticket.CurrentUrl,
+                ResolvedAt = ticket.ResolvedAt
+            });
+
         return Ok(new { message = "Ticket resuelto" });
     }
 
@@ -145,5 +167,30 @@ public class SupportController : ControllerBase
         await _context.SaveChangesAsync();
 
         return Ok(new { message = "Leído" });
+    }
+
+    [HttpGet("notifications/sistemas")]
+    [Authorize(Roles = "SISTEMAS")]
+    public async Task<IActionResult> GetSistemasNotifications()
+    {
+        // Obtener los últimos 10 tickets globales (nuevos/pendientes)
+        var tickets = await _context.SupportTickets
+            .OrderByDescending(t => t.CreatedAt)
+            .Take(10)
+            .Select(t => new {
+                t.Id,
+                t.Description,
+                t.CurrentUrl,
+                t.CreatedAt,
+                t.Status,
+                t.ReporterName,
+                // Para SISTEMAS no usamos el flag IsReadByReporter, pero mandamos false
+                // para que cuente como "No leído" en la campanita hasta que se resuelva si así lo desean,
+                // o bien podemos marcar solo los Pendientes como no leídos (hasUnread)
+                IsReadByReporter = t.Status == "Resolved" 
+            })
+            .ToListAsync();
+
+        return Ok(tickets);
     }
 }

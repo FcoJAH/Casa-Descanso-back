@@ -13,9 +13,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.SetIsOriginAllowed(origin => true) // Permite cualquier origen dinámicamente
               .AllowAnyMethod()
-              .AllowAnyHeader();
+              .AllowAnyHeader()
+              .AllowCredentials(); // REQUERIDO POR SIGNALR
     });
 });
 
@@ -63,8 +64,24 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false,
             ClockSkew = TimeSpan.Zero // Para que la expiración sea exacta
         };
+        
+        // Extraer el token de la query string para SignalR
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+                if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs/notifications"))
+                {
+                    context.Token = accessToken;
+                }
+                return Task.CompletedTask;
+            }
+        };
     });
 
+builder.Services.AddSignalR();
 builder.Services.AddControllers();
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
@@ -94,5 +111,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
+app.MapHub<CasaDescanso.Api.Hubs.NotificationHub>("/hubs/notifications");
 
 app.Run();
