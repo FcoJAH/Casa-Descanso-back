@@ -25,6 +25,9 @@ public class ApplicationDbContext : DbContext
     // 1. Agregar el DbSet para Eventos
     public DbSet<Event> Events => Set<Event>();
 
+    // Tabla para los Tickets de Soporte
+    public DbSet<SupportTicket> SupportTickets => Set<SupportTicket>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -40,6 +43,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Attendance>().ToTable("attendance");
         modelBuilder.Entity<DietType>().ToTable("diettypes");
         modelBuilder.Entity<ResidentDiet>().ToTable("residentdiets");
+        modelBuilder.Entity<SupportTicket>().ToTable("supporttickets");
         
         // 2. Mapeo de la tabla events (coincidiendo con tu script de SQL)
         modelBuilder.Entity<Event>(entity => {
