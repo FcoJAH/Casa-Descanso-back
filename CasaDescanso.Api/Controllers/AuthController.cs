@@ -31,6 +31,7 @@ public class AuthController : ControllerBase
             Position = result.Position,
             Shift = result.ShiftName,
             HasSeenSupportAnnouncement = result.HasSeenSupportAnnouncement,
+            HasSeenCheckinAnnouncement = result.HasSeenCheckinAnnouncement,
             Token = result.Token,
             RefreshToken = result.RefreshToken
         };
@@ -54,6 +55,7 @@ public class AuthController : ControllerBase
             Position = result.Position,
             Shift = result.ShiftName,
             HasSeenSupportAnnouncement = result.HasSeenSupportAnnouncement,
+            HasSeenCheckinAnnouncement = result.HasSeenCheckinAnnouncement,
             Token = result.Token,
             RefreshToken = result.RefreshToken
         };
@@ -68,5 +70,14 @@ public class AuthController : ControllerBase
         if (!success) return NotFound("Usuario no encontrado.");
 
         return Ok(new { message = "Anuncio marcado como visto." });
+    }
+
+    [HttpPost("{userId}/mark-checkin-announcement")]
+    public async Task<IActionResult> MarkCheckinAnnouncementAsSeen(int userId)
+    {
+        var success = await _authService.MarkCheckinAnnouncementAsSeenAsync(userId);
+        if (!success) return NotFound("Usuario no encontrado.");
+
+        return Ok(new { message = "Anuncio de checado marcado como visto." });
     }
 }
