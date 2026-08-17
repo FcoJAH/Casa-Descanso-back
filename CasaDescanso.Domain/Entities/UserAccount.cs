@@ -23,6 +23,7 @@ public class UserAccount
     public bool IsActive { get; set; } = true;
 
     public bool HasSeenSupportAnnouncement { get; set; } = false;
+    public bool HasSeenCheckinAnnouncement { get; set; } = false;
 
     public DateTime CreatedAt { get; set; }
 

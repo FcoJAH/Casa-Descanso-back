@@ -20,7 +20,7 @@ public class AuthService : IAuthService
         _configuration = configuration;
     }
 
-    public async Task<(bool IsSuccess, int UserId, int WorkerId, string FullName, string Position, string ShiftName, bool HasSeenSupportAnnouncement, string Token, string RefreshToken)>
+    public async Task<(bool IsSuccess, int UserId, int WorkerId, string FullName, string Position, string ShiftName, bool HasSeenSupportAnnouncement, bool HasSeenCheckinAnnouncement, string Token, string RefreshToken)>
         LoginAsync(string username, string password)
     {
         var user = await _context.UserAccounts
@@ -31,11 +31,11 @@ public class AuthService : IAuthService
             .FirstOrDefaultAsync(u => u.Username == username && u.IsActive);
 
         if (user == null)
-            return (false, 0, 0, string.Empty, string.Empty, string.Empty, false, string.Empty, string.Empty);
+            return (false, 0, 0, string.Empty, string.Empty, string.Empty, false, false, string.Empty, string.Empty);
 
         // ⚠️ Temporal: comparación directa
         if (user.PasswordHash != password)
-            return (false, 0, 0, string.Empty, string.Empty, string.Empty, false, string.Empty, string.Empty);
+            return (false, 0, 0, string.Empty, string.Empty, string.Empty, false, false, string.Empty, string.Empty);
 
         var worker = user.Worker;
 
@@ -57,12 +57,13 @@ public class AuthService : IAuthService
             worker.Role.Name,
             worker.Shift.Name,
             user.HasSeenSupportAnnouncement,
+            user.HasSeenCheckinAnnouncement,
             token,
             refreshToken
         );
     }
 
-    public async Task<(bool IsSuccess, int UserId, int WorkerId, string FullName, string Position, string ShiftName, bool HasSeenSupportAnnouncement, string Token, string RefreshToken)>
+    public async Task<(bool IsSuccess, int UserId, int WorkerId, string FullName, string Position, string ShiftName, bool HasSeenSupportAnnouncement, bool HasSeenCheckinAnnouncement, string Token, string RefreshToken)>
         RefreshAsync(string token, string refreshToken)
     {
         var user = await _context.UserAccounts
@@ -74,7 +75,7 @@ public class AuthService : IAuthService
 
         if (user == null || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
         {
-            return (false, 0, 0, string.Empty, string.Empty, string.Empty, false, string.Empty, string.Empty);
+            return (false, 0, 0, string.Empty, string.Empty, string.Empty, false, false, string.Empty, string.Empty);
         }
 
         var worker = user.Worker;
@@ -95,6 +96,7 @@ public class AuthService : IAuthService
             worker.Role.Name,
             worker.Shift.Name,
             user.HasSeenSupportAnnouncement,
+            user.HasSeenCheckinAnnouncement,
             newToken,
             newRefreshToken
         );
@@ -106,6 +108,16 @@ public class AuthService : IAuthService
         if (user == null) return false;
 
         user.HasSeenSupportAnnouncement = true;
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> MarkCheckinAnnouncementAsSeenAsync(int userId)
+    {
+        var user = await _context.UserAccounts.FindAsync(userId);
+        if (user == null) return false;
+
+        user.HasSeenCheckinAnnouncement = true;
         await _context.SaveChangesAsync();
         return true;
     }
